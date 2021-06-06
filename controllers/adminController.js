@@ -54,6 +54,7 @@ module.exports = {
       res.redirect('/admin/dashboard');
 
     } catch (error) {
+      console.log(error)
       res.redirect('/admin/signin');
     }
   },
