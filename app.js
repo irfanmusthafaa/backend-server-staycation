@@ -9,6 +9,8 @@ const methodOverride = require('method-override');
 const session = require('express-session')
 //import connect flash
 const flash = require('connect-flash');
+//import cors
+const cors = require('cors')
 
 
 // import mongoose
@@ -20,8 +22,7 @@ mongoose.connect('mongodb+srv://irfanmustafa2307:irfan2307@cluster0.b6wun.mongod
   useFindAndModify: false
 });
 
-//import cors
-const cors = require('cors')
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -42,6 +43,7 @@ app.use(session({
   cookie: { maxAge: 60000 }
 }));
 app.use(flash());
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -53,7 +55,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/api/v1/member', apiRouter);
-app.use(cors());
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
